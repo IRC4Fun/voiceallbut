@@ -90,6 +90,32 @@ subst -nobackslashes -nocommands -novariables rest
              }
 }
 
+bind msg $VAB(access) vab msg_vab
+proc msg_vab {nick uhost hand rest} {
+global VAB
+subst -nobackslashes -nocommands -novariables rest
+
+ if {$rest == ""} {
+              putserv "NOTICE $nick :Calling Syntax: vab <channel> cmd <nick>"
+              putserv "NOTICE $nick :  Commands: list      - Lists no-voice users"
+              putserv "NOTICE $nick :            add nick  - Add nick to no-voice list"
+              putserv "NOTICE $nick :            del nick  - Remove nick from no-voice list"
+              return 0
+                  }
+ set cmd [string toupper [lindex $rest 1]]
+ set chan [lindex $rest 0]
+ 	if {$chan == "#" || $chan == ""} {putquick "NOTICE $nick :SYNTAX: /msg $botnick VAB <#channel> <cmd> <nickname>" ; return 0}
+	if {![string match "#*" $chan]} {set chan "#$chan"}
+	if {![validchan $chan]} {putquick "NOTICE $nick :ERROR: I am not on channel: $chan." ; return 0}
+ set rest [lrange $rest 2 end]
+
+ switch $cmd {
+  "LIST" {vab_listuser $nick $uhost $hand $chan $rest}
+  "ADD" {vab_adduser $nick $uhost $hand $chan $rest}
+  "DEL" {vab_deluser $nick $uhost $hand $chan $rest}
+             }
+}
+
 proc vab_adduser {nick uhost hand chan rest} {
 global VAB 
  subst -nobackslashes -nocommands -novariables rest
