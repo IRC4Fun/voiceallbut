@@ -109,7 +109,7 @@ global VAB
    putserv "NOTICE $nick :Setting default flags for $user\($thand\): $rt"
 
                           }
- if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE $nick :$user is allready no-voiced on $chan"; return 0}
+ if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE $nick :$user is already no-voiced on $chan"; return 0}
  set rt [chattr $thand |+$VAB(flag) $chan]
  putserv "NOTICE $nick :Flags for $user\($thand\) are now: $rt"
  if {[isvoice $user $chan]} {pushmode $chan -v $user}
@@ -140,7 +140,7 @@ bind pub o|o [cmdchar]vabadd pub_VABadd
 proc pub_VABadd {nick uhost hand channel rest} {
 global VAB
  if {[voicechan $channel]} {
-                            puthelp "NOTICE $nick :$channel allready in VAB List"
+                            puthelp "NOTICE $nick :$channel already in VAB List"
                             return 0
                            }
  puthelp "NOTICE $nick :Adding $channel to VAB List"
@@ -152,7 +152,7 @@ bind pub o|o [cmdchar]vabdel pub_VABdel
 proc pub_VABdel {nick uhost hand channel rest} {
 global VAB
  if {![voicechan $channel]} {
-                            puthelp "NOTICE $nick :$channel not found in  VAB List"
+                            puthelp "NOTICE $nick :$channel not found in VAB List"
                             return 0
                            }
  puthelp "NOTICE $nick :Removing $channel from VAB List"
