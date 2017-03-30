@@ -1,4 +1,5 @@
-#         Script : VoiceAllBut v1.02 by David Proper (Dr. Nibble [DrN])
+#         Script : VoiceAllBut by David Proper (Dr. Nibble [DrN])
+#   New Stuff by : siniStar (Austin Ellis) @ irc.IRC4Fun.net
 #
 #    Description : VoiceAllBut is an auto-voice script with an exceptions
 #                  list. You can add/remove people from the no-voice list
@@ -56,7 +57,7 @@ set cmdchar_ "*"
 
 
 
-set VAB(ver) "v1.02.02"
+set VAB(ver) "v1.5"
 
 proc cmdchar { } {global cmdchar_; return $cmdchar_}
 
@@ -230,6 +231,6 @@ global VAB
 }
 
 
-putlog "VoiceAllBut $VAB(ver) by David Proper (DrN) -:LoadeD:-"
-return "VoiceAllBut $VAB(ver) by David Proper (DrN) -:LoadeD:-"
+putlog "VoiceAllBut $VAB(ver) Loaded."
+return "VoiceAllBut $VAB(ver) Loaded."
 
