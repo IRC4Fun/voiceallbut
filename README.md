@@ -21,6 +21,17 @@ VoiceAllBut (VAB) allows you to auto-voice users in VAB-enabled channels, while 
  ``*vabdel`` _(disables VoiceAllBut on channel)_  
  ``*vablist`` _(lists channels with VoiceAllBut functionality enabled)_
 
--Commands are in-channel commands at this time.  
--Updates are planned to bring /MSG capabilities 
- 
+-Commands are in-channel OR via /MSG now.  
+-Automated VAB adds for being De-voiced, Kicked, Killed, G-lined, K-lined, Killed or Z-lined 
+are **coming soon**!
+
+### To Do List:
+- [x] Fix spelling mistakes
+- [x] Add ability to use VAB commands in private message
+- [ ] Add automated VAB adds for being De-voiced
+- [ ] Add automated VAB adds for being Kicked
+- [ ] Add automated VAB adds for being Killed
+- [ ] Add automated VAB adds for being G-lined 
+- [ ] Add automated VAB adds for being K-lined 
+- [ ] Add automated VAB adds for being Killed 
+- [ ] Add automated VAB adds for being Z-lined
