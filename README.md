@@ -1,6 +1,6 @@
 # voiceallbut
 Voice All But TCL _(for eggdrops)_
-v1.02    
+v2.0    
 
 VoiceAllBut (VAB) allows you to auto-voice users in VAB-enabled channels, while maintaining a list of those who should not be auto-voiced.    
 
@@ -19,19 +19,27 @@ VoiceAllBut (VAB) allows you to auto-voice users in VAB-enabled channels, while 
  
  ``*vabadd`` _(enables VoiceAllBut on channel)_  
  ``*vabdel`` _(disables VoiceAllBut on channel)_  
- ``*vablist`` _(lists channels with VoiceAllBut functionality enabled)_
+ ``*vablist`` _(lists channels with VoiceAllBut functionality enabled)_    
 
 -Commands are in-channel OR via /MSG now.  
 -Automated VAB adds for being De-voiced, Kicked, Killed, G-lined, K-lined, Killed or Z-lined 
-are **coming soon**!
+are **complete**!    
 
-### To Do List:
-- [x] Fix spelling mistakes
-- [x] Add ability to use VAB commands in private message
-- [ ] Add automated VAB adds for being De-voiced
-- [ ] Add automated VAB adds for being Kicked
-- [ ] Add automated VAB adds for being Killed
-- [ ] Add automated VAB adds for being G-lined 
-- [ ] Add automated VAB adds for being K-lined 
-- [ ] Add automated VAB adds for being Killed 
-- [ ] Add automated VAB adds for being Z-lined
+### To Do List:  
+- [x] Fix spelling mistakes  
+- [x] Add ability to use VAB commands in private message  
+- [x] Add automated VAB adds for being De-voiced  
+- [x] Add automated VAB adds for being Kicked  
+- [x] Add automated VAB adds for being Killed  
+- [x] Add automated VAB adds for being G-lined  
+- [x] Add automated VAB adds for being K-lined  
+- [x] Add automated VAB adds for being Killed  
+- [x] Add automated VAB adds for being Z-lined  
+- [x] Complete above To Do list for v2.0, then all new  
+To Do's, requests or issues should be maintained in  
+https://github.com/IRC4Fun/voiceallbut/issues  
+
+### For Questions, Support, etc:  
+See _siniStar_ in #IRC4Fun on **irc.IRC4Fun.net**  
+(plaintext: 6667-6669)
+(ssl: 6697-6699)
