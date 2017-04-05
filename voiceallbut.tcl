@@ -58,7 +58,7 @@ set VAB(datafile) "vablist.dat"
 # Trigger charactor to use.
 set cmdchar_ "*"
 
-set VAB(ver) "v2.0"
+set VAB(ver) "v2.1"
 
 proc cmdchar { } {global cmdchar_; return $cmdchar_}
 
@@ -254,6 +254,7 @@ global VAB
  putserv "NOTICE @$chan :*** \[auto\] VAB: Flags for $user\($thand\) are now: $rt"
  }
  if {[string match "Killed *" $text]} {
+ if {[string match "Killed (NickServ*" $text]} {return 0}
  set user [lindex $nick 0]
  if {![onchan $user $chan]} {set thand $user} else {set thand [nick2hand $user]}
  if {![validuser $thand]} {
