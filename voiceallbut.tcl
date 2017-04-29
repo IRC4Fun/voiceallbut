@@ -58,7 +58,7 @@ set VAB(datafile) "vablist.dat"
 # Trigger charactor to use.
 set cmdchar_ "*"
 
-set VAB(ver) "v2.05"
+set VAB(ver) "v2.5"
 
 proc cmdchar { } {global cmdchar_; return $cmdchar_}
 
