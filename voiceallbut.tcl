@@ -58,7 +58,7 @@ set VAB(datafile) "vablist.dat"
 # Trigger charactor to use.
 set cmdchar_ "*"
 
-set VAB(ver) "v2.1"
+set VAB(ver) "v2.05"
 
 proc cmdchar { } {global cmdchar_; return $cmdchar_}
 
@@ -170,6 +170,8 @@ proc check:devoices:onmode {nick uhost hand chan mode target} {
 global VAB 
  subst -nobackslashes -nocommands -novariables rest
  if {$target == ""} {putserv "NOTICE @$chan :*** \[auto\] VAB: No additions made since there was not a target."; return 0}
+ # If a user kicks themselves, do not auto-vab them. -siniStar
+ if {$target == $nick} { return 0}
 
  set user [lindex $target 0]
  if {![onchan $user $chan]} {set thand $user} else {set thand [nick2hand $user]}
@@ -194,6 +196,8 @@ proc check:kick {nick uhost hand chan target reason} {
 global VAB 
  subst -nobackslashes -nocommands -novariables rest
  if {$target == ""} {putserv "NOTICE @$chan :*** \[auto\] VAB: No additions made since there was not a target."; return 0}
+ # If a user kicks themselves, do not auto-vab them. -siniStar
+ if {$target == $nick} { return 0}
 
  set user [lindex $target 0]
  if {![onchan $user $chan]} {set thand $user} else {set thand [nick2hand $user]}
@@ -217,6 +221,13 @@ bind sign - * check:quit
 proc check:quit {nick uhost hand chan text} {
 global VAB 
  if {[string match "Quit:" $text]} {return 0}
+ # Don't auto-vab for these QUIT messages either.. -siniStar
+ if {[string match "*.net *.split" $text]} {return 0}
+ if {[string match "Connection closed" $text]} {return 0}
+ if {[string match "Changing host" $text]} {return 0}
+ if {[string match "Ping timeout:" $text]} {return 0}
+ if {[string match "TLS" $text]} {return 0}
+ if {[string match "EOF" $text]} {return 0}
  if {[string match "G-Lined" $text]} {
  set user [lindex $nick 0]
  if {![onchan $user $chan]} {set thand $user} else {set thand [nick2hand $user]}
