@@ -58,7 +58,7 @@ set VAB(datafile) "vablist.dat"
 # Trigger charactor to use.
 set cmdchar_ "*"
 
-set VAB(ver) "v2.5"
+set VAB(ver) "v2.5.1"
 
 proc cmdchar { } {global cmdchar_; return $cmdchar_}
 
@@ -132,10 +132,7 @@ global VAB
    set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
    set rt [adduser $thand $sitemask]
    if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
-   putserv "NOTICE $nick :Adding $user\($thand\): $rt"
    set rt [chattr $thand ${VAB(default-flags)}]
-   putserv "NOTICE $nick :Setting default flags for $user\($thand\): $rt"
-
                           }
  if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE $nick :$user is already no-voiced on $chan"; return 0}
  set rt [chattr $thand |+$VAB(flag) $chan]
@@ -181,10 +178,7 @@ global VAB
    set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
    set rt [adduser $thand $sitemask]
    if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Adding $user\($thand\) to $chan VAB for being de-voiced: $rt"
    set rt [chattr $thand ${VAB(default-flags)}]
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Setting default flags for $user\($thand\): $rt"
-
                           }
  if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE @$chan :*** \[auto\] VAB: $user is already on $chan VAB list. \[No action taken\]"; return 0}
  set rt [chattr $thand |+$VAB(flag) $chan]
@@ -207,10 +201,7 @@ global VAB
    set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
    set rt [adduser $thand $sitemask]
    if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Adding $user\($thand\) to $chan VAB for being kicked: $rt"
    set rt [chattr $thand ${VAB(default-flags)}]
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Setting default flags for $user\($thand\): $rt"
-
                           }
  if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE @$chan :*** \[auto\] VAB: $user is already on $chan VAB list. \[No action taken\]"; return 0}
  set rt [chattr $thand |+$VAB(flag) $chan]
@@ -237,10 +228,7 @@ global VAB
    set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
    set rt [adduser $thand $sitemask]
    if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Adding $user\($thand\) to $chan VAB for being Killed or G:Lined: $rt"
    set rt [chattr $thand ${VAB(default-flags)}]
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Setting default flags for $user\($thand\): $rt"
-
                           }
  if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE @$chan :*** \[auto\] VAB: $user is already on $chan VAB list. \[No action taken\]"; return 0}
  set rt [chattr $thand |+$VAB(flag) $chan]
@@ -255,10 +243,37 @@ global VAB
    set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
    set rt [adduser $thand $sitemask]
    if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Adding $user\($thand\) to $chan VAB for being K:Lined: $rt"
    set rt [chattr $thand ${VAB(default-flags)}]
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Setting default flags for $user\($thand\): $rt"
-
+                          }
+ if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE @$chan :*** \[auto\] VAB: $user is already on $chan VAB list. \[No action taken\]"; return 0}
+ set rt [chattr $thand |+$VAB(flag) $chan]
+ putserv "NOTICE @$chan :*** \[auto\] VAB: Flags for $user\($thand\) are now: $rt"
+ }
+ if {[string match "D-Lined" $text]} {
+ set user [lindex $nick 0]
+ if {![onchan $user $chan]} {set thand $user} else {set thand [nick2hand $user]}
+ if {![validuser $thand]} {
+  if {![onchan $user $chan]} {putserv "NOTICE @$chan :*** \[auto\] VAB: No visible recognition of $user on $chan. Can't lock on target to get a hostmask to add user to VAB by myself."; return 0}
+   if {$thand == "*"} {set thand $user}
+   set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
+   set rt [adduser $thand $sitemask]
+   if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
+   set rt [chattr $thand ${VAB(default-flags)}]
+                          }
+ if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE @$chan :*** \[auto\] VAB: $user is already on $chan VAB list. \[No action taken\]"; return 0}
+ set rt [chattr $thand |+$VAB(flag) $chan]
+ putserv "NOTICE @$chan :*** \[auto\] VAB: Flags for $user\($thand\) are now: $rt"
+ }
+ if {[string match "X-Lined" $text]} {
+ set user [lindex $nick 0]
+ if {![onchan $user $chan]} {set thand $user} else {set thand [nick2hand $user]}
+ if {![validuser $thand]} {
+  if {![onchan $user $chan]} {putserv "NOTICE @$chan :*** \[auto\] VAB: No visible recognition of $user on $chan. Can't lock on target to get a hostmask to add user to VAB by myself."; return 0}
+   if {$thand == "*"} {set thand $user}
+   set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
+   set rt [adduser $thand $sitemask]
+   if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
+   set rt [chattr $thand ${VAB(default-flags)}]
                           }
  if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE @$chan :*** \[auto\] VAB: $user is already on $chan VAB list. \[No action taken\]"; return 0}
  set rt [chattr $thand |+$VAB(flag) $chan]
@@ -274,10 +289,7 @@ global VAB
    set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
    set rt [adduser $thand $sitemask]
    if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Adding $user\($thand\) to $chan VAB for being Killed: $rt"
    set rt [chattr $thand ${VAB(default-flags)}]
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Setting default flags for $user\($thand\): $rt"
-
                           }
  if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE @$chan :*** \[auto\] VAB: $user is already on $chan VAB list. \[No action taken\]"; return 0}
  set rt [chattr $thand |+$VAB(flag) $chan]
@@ -292,10 +304,7 @@ global VAB
    set sitemask "*!*[string trimleft [maskhost [getchanhost $user $chan]] *!]"
    set rt [adduser $thand $sitemask]
    if {$rt == 1} {set rt "Success"} else {set rt "Failed"}
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Adding $user\($thand\) to $chan VAB for being Z:Lined: $rt"
    set rt [chattr $thand ${VAB(default-flags)}]
-   putserv "NOTICE @$chan :*** \[auto\] VAB: Setting default flags for $user\($thand\): $rt"
-
                           }
  if {([matchchanattr $thand |$VAB(flag) $chan])} {putserv "NOTICE @$chan :*** \[auto\] VAB: $user is already on $chan VAB list. \[No action taken\]"; return 0}
  set rt [chattr $thand |+$VAB(flag) $chan]

@@ -1,6 +1,6 @@
 # voiceallbut
 Voice All But TCL _(for eggdrops)_
-v2.5    
+v2.5.1    
 
 VoiceAllBut (VAB) allows you to auto-voice users in VAB-enabled channels, while maintaining a list of those who should not be auto-voiced.    
 
