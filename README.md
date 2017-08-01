@@ -45,8 +45,8 @@ additions
 - [x] Add support for Charybdis and forks (D-lines, K-lines, X-lines) (2.5.1)  
 - [x] Automated VABs no longer generate 3 lines of /NOTICE (now 1 line) (2.5.1)  
 - [x] Manual VAB additions also generate 1 line NOTICE instead of 3. (2.5.1)  
-- [] Code clean-ups for 2.6 (2.6)  
-- [] Add exclusion for users devoicing, kicking, or killing themselves. (2.6)    
+- [ ] Code clean-ups for 2.6 (2.6)  
+- [ ] Add exclusion for users devoicing, kicking, or killing themselves. (2.6)    
 
 ### For Questions, Support, etc:  
 See _siniStar_ in #IRC4Fun on **irc.IRC4Fun.net**  
