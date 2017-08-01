@@ -2,7 +2,12 @@
 Voice All But TCL _(for eggdrops)_
 v2.5.1    
 
-VoiceAllBut (VAB) allows you to auto-voice users in VAB-enabled channels, while maintaining a list of those who should not be auto-voiced.    
+VoiceAllBut (VAB) allows you to auto-voice users in VAB-enabled channels, while maintaining a list of those who should not be auto-voiced.  
+This is _especially_ helpful in **Help Channels** or **chat channels that utilize moderation (+m)** to _prevent_ or _handle abuse_.  Unlike 
+Services, this eggdrop script allows you to avoid blindly auto-voicing everyone that joins.  VoiceAllBut will (in addition to allowing you 
+to manually add users to the VAB (Voice All But) list) also automatically add users to it's VAB list upon being de-voiced, kicked, killed 
+by an IRC Operator, or banned from the IRC network.  This means that abusive users or flooders will not be auto-voiced during a flood or 
+spam attack, nor will users that you have decided to devoice, remove from the channel, or network.  Voice All But _(the bad guys!)_    
 
 ### Installation:
  1. Download from GitHub and upload to your eggdrop's /scripts/ directory.  
@@ -23,9 +28,9 @@ VoiceAllBut (VAB) allows you to auto-voice users in VAB-enabled channels, while 
 
 -Commands are in-channel OR via /MSG now.  
 -Automated VAB adds for being De-voiced, Kicked, Killed, G-lined, K-lined, Killed or Z-lined 
-are **complete**!    
+are **complete**!  Supports Charybdis and Ratbox ban-types as well. (D/K/X:lines)    
 
-### To Do List:  
+### New Features / To Do List:  
 - [x] Fix spelling mistakes  
 - [x] Add ability to use VAB commands in private message  
 - [x] Add automated VAB adds for being De-voiced  
@@ -37,9 +42,11 @@ additions
 - [x] Add automated VAB adds for being K-lined  
 - [x] Add automated VAB adds for being Killed  
 - [x] Add automated VAB adds for being Z-lined  
-- [x] Complete above To Do list for v2.0, then all new  
-To Do's, requests or issues should be maintained in  
-https://github.com/IRC4Fun/voiceallbut/issues  
+- [x] Add support for Charybdis and forks (D-lines, K-lines, X-lines) (2.5.1)  
+- [x] Automated VABs no longer generate 3 lines of /NOTICE (now 1 line) (2.5.1)  
+- [x] Manual VAB additions also generate 1 line NOTICE instead of 3. (2.5.1)  
+- [] Code clean-ups for 2.6 (2.6)  
+- [] Add exclusion for users devoicing, kicking, or killing themselves. (2.6)    
 
 ### For Questions, Support, etc:  
 See _siniStar_ in #IRC4Fun on **irc.IRC4Fun.net**  
